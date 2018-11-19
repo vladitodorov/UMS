@@ -1,0 +1,63 @@
+﻿@model UMS.Models.ViewModels.Users.AllUserDetailsByEgn
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Потребител с ЕГН: @Model.Egn има следните достъпи:</h2>
+
+<h2>Активна директория</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Акаунт АД</th>
+                <th>Име</th>
+                <th>Фамилия</th>
+                <th>Хермес ИД</th>
+                <th>Състояние</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.AdUser.SamAccount</td>
+                <td>@Model.AdUser.FirstName</td>
+                <td>@Model.AdUser.LastName</td>
+                <td>@Model.AdUser.HermesId</td>
+                <td>@Model.AdUser.IsAcive</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@if (Model.OpusNonUsers.Count() > 0)
+{
+    <h2>ОПУС Общо/Автомобилно застраховане</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Акаунт ОПУС</th>
+                    <th>Агенция</th>
+                    <th>Име</th>
+                    <th>Фамилия</th>
+                    <th>Дата на създаване</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.OpusNonUsers)
+                {
+                    <tr>
+                        <td>@user.OpusUserName</td>
+                        <td>@user.Agency</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.DateCreated.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

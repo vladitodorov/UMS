@@ -17,8 +17,9 @@ namespace UMS.Data
             return new UmsDbContext();
         }
 
-        public virtual DbSet<AdAccount> AdAccounts { get; set; }
+        public virtual DbSet<AdUser> AdAccounts { get; set; }
         public virtual DbSet<AdGroup> AdGroups { get; set; }
+        public virtual DbSet<OpusNonUser> OpusNonUsers { get; set; }
     }
 
 }

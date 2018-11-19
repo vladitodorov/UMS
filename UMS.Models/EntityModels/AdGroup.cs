@@ -6,13 +6,13 @@
     {
         public AdGroup()
         {
-            this.AdAccounts = new HashSet<AdAccount>();
+            this.AdAccounts = new HashSet<AdUser>();
         }
 
         public int Id { get; set; }
 
         public string GroupName { get; set; }
 
-        public virtual ICollection<AdAccount> AdAccounts { get; set; }
+        public virtual ICollection<AdUser> AdAccounts { get; set; }
     }
 }

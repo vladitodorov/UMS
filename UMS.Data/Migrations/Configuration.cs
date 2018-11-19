@@ -57,87 +57,152 @@ namespace UMS.Data.Migrations
 
 
             //Seeds data for testing. It MUST be removed in production-------------------------------------------->
-
             //adding ad groups
-            context.AdGroups.AddOrUpdate(group => group.GroupName, new AdGroup[]
-            {
-                new AdGroup() {GroupName = "BPM AUTO"},
-                new AdGroup() {GroupName = "BPM AUTO Claim Handler"},
-                new AdGroup() {GroupName = "BPM AUTO Claim Handler 2"},
-                new AdGroup() {GroupName = "BPM NONLIFE HEADQUARTER"},
-                new AdGroup() {GroupName = "ctx AUTO OPUS"},
-                new AdGroup() {GroupName = "ctx OraIns"},
-            });
+            PopulateAdGroupTable(context);
+            //adding ad users
+            PopulateAdUserTable(context);
+            //adding opus nonlife users
+            PopulateOpusNUserTable(context);
+            //---------------------------------------------------------------------------------------------------->
+          
+        }
 
-            //adding ad accounts
-            context.AdAccounts.AddOrUpdate(account => account.Egn, new AdAccount[]
+        private void PopulateOpusNUserTable(UmsDbContext context)
+        {
+            context.OpusNonUsers.AddOrUpdate(user => user.OpusUserName, new OpusNonUser[]
             {
-                new AdAccount()
+                new OpusNonUser()
+                {
+                    OpusUserName = "DIVANOVA",
+                    Agency = "001",
+                    FirstName = "Димитринка",
+                    LastName = "Иванова",
+                    Egn = 8001126583,
+                    DateCreated = DateTime.Parse("2017/01/15"),
+                    LastModifiedDate = DateTime.Now
+                },
+
+                new OpusNonUser()
+                {
+                    OpusUserName = "DIVANOVA217",
+                    Agency = "217",
+                    FirstName = "Димитринка",
+                    LastName = "Иванова",
+                    Egn = 8001126583,
+                    DateCreated = DateTime.Parse("2016/06/15"),
+                    LastModifiedDate = DateTime.Now
+                },
+
+                new OpusNonUser()
+                {
+                    OpusUserName = "IYORDANOV",
+                    Agency = "473",
+                    FirstName = "Димитрика",
+                    LastName = "Иванова",
+                    Egn = 7807126852,
+                    DateCreated = DateTime.Parse("2015/12/15"),
+                    LastModifiedDate = DateTime.Now
+                },
+            });
+        }
+
+        private void PopulateAdUserTable(UmsDbContext context)
+        {
+            context.AdAccounts.AddOrUpdate(account => account.Egn, new AdUser[]
+            {
+                new AdUser()
                 {
                     Egn = 8001126583,
                     FirstName = "Dimitrinka",
                     LastName = "Ivanova",
                     HermesId = 2514,
                     SamAccount = "u967235",
-                    IsAcive = true
+                    IsAcive = true,
+                    DateCreated = DateTime.Parse("2017/01/15"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 7807126852,
                     FirstName = "Ivailo",
                     LastName = "Yordanov",
                     HermesId = 3603,
                     SamAccount = "u480005",
-                    IsAcive = true
+                    IsAcive = true,
+                    DateCreated = DateTime.Parse("2015/12/15"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 8506253602,
                     FirstName = "Kalinka",
                     LastName = "Milanova",
                     HermesId = 5421,
                     SamAccount = "u010025",
-                    IsAcive = true
+                    IsAcive = true,
+                    DateCreated = DateTime.Parse("2012/11/05"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 6609156001,
                     FirstName = "Krasimir",
                     LastName = "Petrov",
                     HermesId = 1023,
                     SamAccount = "u217016",
-                    IsAcive = true
+                    IsAcive = true,
+                    DateCreated = DateTime.Parse("2009/01/23"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 6909282500,
                     FirstName = "Alexander",
                     LastName = "Karakachanov",
                     HermesId = 1569,
                     SamAccount = "u217858",
-                    IsAcive = true
+                    IsAcive = true,
+                    DateCreated = DateTime.Parse("2014/02/28"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 9101116565,
                     FirstName = "Ivan",
                     LastName = "Poyordanov",
                     HermesId = 9654,
                     SamAccount = "u969635",
-                    IsAcive = false
+                    IsAcive = false,
+                    DateCreated = DateTime.Parse("2011/07/15"),
+                    DateClosed = DateTime.Parse("2018/07/25"),
+                    LastModifiedDate = DateTime.Now
                 },
-                new AdAccount()
+                new AdUser()
                 {
                     Egn = 7506126549,
                     FirstName = "Kremena",
                     LastName = "Vasileva",
                     HermesId = 7756,
                     SamAccount = "u969602",
-                    IsAcive = false
-                },
+                    IsAcive = false,
+                    DateCreated = DateTime.Parse("2013/01/10"),
+                    DateClosed = DateTime.Parse("2017/06/15"),
+                    LastModifiedDate = DateTime.Now
+                }
             });
-            //---------------------------------------------------------------------------------------------------->
-          
+        }
+
+        private void PopulateAdGroupTable(UmsDbContext context)
+        {
+            context.AdGroups.AddOrUpdate(group => group.GroupName, new AdGroup[]
+             {
+                new AdGroup() {GroupName = "BPM AUTO"},
+                new AdGroup() {GroupName = "BPM AUTO Claim Handler"},
+                new AdGroup() {GroupName = "BPM AUTO Claim Handler 2"},
+                new AdGroup() {GroupName = "BPM NONLIFE HEADQUARTER"},
+                new AdGroup() {GroupName = "ctx AUTO OPUS"},
+                new AdGroup() {GroupName = "ctx OraIns"},
+             });
         }
     }
 }

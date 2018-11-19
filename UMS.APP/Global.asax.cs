@@ -6,7 +6,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using UMS.Models.EntityModels;
-    using UMS.Models.ViewModels.AdAccount;
+    using UMS.Models.ViewModels.AdUsers;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -23,8 +23,7 @@
         {
             Mapper.Initialize(expression =>
             {
-                expression.CreateMap<AdAccount, AdAccountViewModel>();
-                expression.CreateMap<AdAccount, AdAccountSingleViewModel>();
+                expression.CreateMap<AdUser, AdUserByEgnViewModel>();
 
             });
         }

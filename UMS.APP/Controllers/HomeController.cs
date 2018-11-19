@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using UMS.Models.ViewModels.AdAccount;
+    using UMS.Models.ViewModels.AdUsers;
     using UMS.Services;
 
     public class HomeController : BaseController
@@ -16,8 +16,9 @@
 
         public ActionResult Index()
         {
-            IEnumerable<AdAccountViewModel> adAccounts = this.service.GetAllAdAccounts();
-            return this.View(adAccounts);
+            //IEnumerable<AdAccountViewModel> adAccounts = this.service.GetAllAdAccounts();
+            //return this.View(adAccounts);
+            return View();
         }
 
     }

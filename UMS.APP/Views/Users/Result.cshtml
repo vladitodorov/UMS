@@ -1,0 +1,30 @@
+﻿@model UMS.Models.ViewModels.AdUsers.AdUserByEgnViewModel
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Резултат за ЕГН: @Model.Egn</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Акаунт АД</th>
+                <th>Име</th>
+                <th>Фамилия</th>
+                <th>Състояние</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.SamAccount</td>
+                <td>@Model.FirstName</td>
+                <td>@Model.LastName</td>
+                <td>@Model.IsAcive</td>
+                <td><a class="btn btn-primary" href="/users/details/@Model.Egn">Информация</a></td>
+            </tr>            
+        </tbody>
+    </table>
+</div>

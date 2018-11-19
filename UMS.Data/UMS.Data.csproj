@@ -56,9 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201811160346348_InitialMigration.cs" />
-    <Compile Include="Migrations\201811160346348_InitialMigration.Designer.cs">
-      <DependentUpon>201811160346348_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201811170743524_InitialSetup.cs" />
+    <Compile Include="Migrations\201811170743524_InitialSetup.Designer.cs">
+      <DependentUpon>201811170743524_InitialSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811170757209_OpusNonlifeUsers.cs" />
+    <Compile Include="Migrations\201811170757209_OpusNonlifeUsers.Designer.cs">
+      <DependentUpon>201811170757209_OpusNonlifeUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UmsDbContext.cs" />
@@ -75,8 +79,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811160346348_InitialMigration.resx">
-      <DependentUpon>201811160346348_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811170743524_InitialSetup.resx">
+      <DependentUpon>201811170743524_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811170757209_OpusNonlifeUsers.resx">
+      <DependentUpon>201811170757209_OpusNonlifeUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,21 +3,24 @@ namespace UMS.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class InitialSetup : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.AdAccounts",
+                "dbo.AdUsers",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         SamAccount = c.String(nullable: false, maxLength: 8),
-                        Egn = c.Int(nullable: false),
+                        Egn = c.Long(nullable: false),
                         HermesId = c.Int(nullable: false),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
                         IsAcive = c.Boolean(nullable: false),
+                        DateCreated = c.DateTime(nullable: false),
+                        DateClosed = c.DateTime(),
+                        LastModifiedDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -101,17 +104,17 @@ namespace UMS.Data.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.AdGroupAdAccounts",
+                "dbo.AdGroupAdUsers",
                 c => new
                     {
                         AdGroup_Id = c.Int(nullable: false),
-                        AdAccount_Id = c.Int(nullable: false),
+                        AdUser_Id = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.AdGroup_Id, t.AdAccount_Id })
+                .PrimaryKey(t => new { t.AdGroup_Id, t.AdUser_Id })
                 .ForeignKey("dbo.AdGroups", t => t.AdGroup_Id, cascadeDelete: true)
-                .ForeignKey("dbo.AdAccounts", t => t.AdAccount_Id, cascadeDelete: true)
+                .ForeignKey("dbo.AdUsers", t => t.AdUser_Id, cascadeDelete: true)
                 .Index(t => t.AdGroup_Id)
-                .Index(t => t.AdAccount_Id);
+                .Index(t => t.AdUser_Id);
             
         }
         
@@ -121,24 +124,24 @@ namespace UMS.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.AdGroupAdAccounts", "AdAccount_Id", "dbo.AdAccounts");
-            DropForeignKey("dbo.AdGroupAdAccounts", "AdGroup_Id", "dbo.AdGroups");
-            DropIndex("dbo.AdGroupAdAccounts", new[] { "AdAccount_Id" });
-            DropIndex("dbo.AdGroupAdAccounts", new[] { "AdGroup_Id" });
+            DropForeignKey("dbo.AdGroupAdUsers", "AdUser_Id", "dbo.AdUsers");
+            DropForeignKey("dbo.AdGroupAdUsers", "AdGroup_Id", "dbo.AdGroups");
+            DropIndex("dbo.AdGroupAdUsers", new[] { "AdUser_Id" });
+            DropIndex("dbo.AdGroupAdUsers", new[] { "AdGroup_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropTable("dbo.AdGroupAdAccounts");
+            DropTable("dbo.AdGroupAdUsers");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AdGroups");
-            DropTable("dbo.AdAccounts");
+            DropTable("dbo.AdUsers");
         }
     }
 }
