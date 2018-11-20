@@ -6,8 +6,22 @@
 <h1>@ViewData["ErrorMessage"]</h1>
 @using (Html.BeginForm("Result", "Users", FormMethod.Post))
 {
-<label>Търсене на потребител по ЕГН</label>
-<input type="text" class="form-control" name="egn" placeholder="Въведете ЕГН">
-<button type="submit" class="btn btn-default">Търсене</button>
-}
-<p style="color:red">Търсенето се извършва само в потребителите от Активна директория</p>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Търсене на потребител по ЕГН
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <input style="width:200px" type="text" class="form-control" name="egn" placeholder="Въведете ЕГН">
+            </div>
+            <button type="submit" class="btn btn-primary">Търсене</button>
+
+            <div>
+                <p style="color:red">Търсенето се извършва само в потребителите от Активна директория</p>
+            </div>
+        </div>
+     </div>
+ }
+
+
+

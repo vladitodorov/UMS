@@ -53,8 +53,8 @@
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.ChangePasswordSuccess ? "Вашата парола беше променена успешно."
+                : message == ManageMessageId.Error ? "Възникна грешка, Проверете за правилно изписване на паролата."
                 : "";
 
             var userId = User.Identity.GetUserId();

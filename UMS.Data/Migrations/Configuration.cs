@@ -37,7 +37,7 @@ namespace UMS.Data.Migrations
             }
 
             //Creates default user and sets role "administator" for initial login
-            if (!context.Users.Any())
+            if (!context.Users.Any(user => user.UserName == "UmsAdmin"))
             {
                 var store = new UserStore<User>(context);
                 var manager = new UserManager<User>(store);

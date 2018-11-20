@@ -89,6 +89,8 @@
     <Compile Include="EntityModels\OpusNonUser.cs" />
     <Compile Include="EntityModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Account\AccountWithRolesViewModel.cs" />
+    <Compile Include="ViewModels\Account\AllAccountsViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />

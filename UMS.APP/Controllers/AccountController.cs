@@ -1,29 +1,48 @@
 ﻿namespace UMS.APP.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using UMS.Models.EntityModels;
     using UMS.Models.ViewModels.Account;
+    using UMS.Services;
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private RoleManager<IdentityRole> _roleManager;
+        private AccountService service;
 
         public AccountController()
         {
+            this.service = new AccountService();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, RoleManager<IdentityRole> roleManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
+        }
+
+        public RoleManager<IdentityRole> RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<RoleManager<IdentityRole>>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
         }
 
         public ApplicationSignInManager SignInManager
@@ -84,7 +103,7 @@
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Неуспешен опит за вход.");
                     return View(model);
             }
         }
@@ -100,7 +119,6 @@
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -110,9 +128,8 @@
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    return RedirectToAction("Index", "Home");
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);                    
+                    return RedirectToAction("All", "Account");
                 }
                 AddErrors(result);
             }
@@ -120,63 +137,60 @@
             return View(model);
         }
 
-        //
-        // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        // GET: /Account/All
+        [HttpGet]
+        public ActionResult All()
         {
-            if (userId == null || code == null)
+            AllAccountsViewModel allUsers = this.service.GetAllUsers();
+            return View(allUsers);
+        }
+
+        [HttpGet]
+        public ActionResult Roles(string id)
+        {
+            var userById = this.UserManager.FindById(id);
+            if (userById == null)
             {
-                return View("Error");
+                return HttpNotFound();
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+
+            var roles = this.UserManager.GetRoles(id);                
+
+            return View(new AccountWithRolesViewModel
+            {
+                Id = id,
+                Username = userById.UserName,
+                Roles = roles
+            });
         }
 
-
-        //
-        // GET: /Account/ResetPassword
-        [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
-        {
-            return code == null ? View("Error") : View();
-        }
-
-        //
-        // POST: /Account/ResetPassword
+        // POST: /Account/Roles
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
+        public ActionResult Roles(AccountWithRolesViewModel model, string role, string roleRemove)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = await UserManager.FindByNameAsync(model.Username);
+            var user = model.Id;
+
             if (user == null)
             {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return HttpNotFound();
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
+
+            if (role == null && roleRemove == null)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                return RedirectToAction("Roles", "Account", new { id = model.Id });
             }
-            AddErrors(result);
-            return View();
+            else if (role != null && roleRemove == null)
+            {
+                UserManager.AddToRole(user, role);
+            }
+            else if (role == null && roleRemove != null)
+            {
+                UserManager.RemoveFromRole(user, roleRemove);
+            }
+
+            return RedirectToAction("Roles", "Account",new { id = model.Id});
         }
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
-        {
-            return View();
-        }
-
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -185,34 +199,7 @@
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
-
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
+      
 
         #region Helpers
         // Used for XSRF protection when adding external logins

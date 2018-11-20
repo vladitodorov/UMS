@@ -13,7 +13,7 @@
         [Display(Name = "Парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Да запомни ли?")]
+        [Display(Name = "Запомни?")]
         public bool RememberMe { get; set; }
     }
 }

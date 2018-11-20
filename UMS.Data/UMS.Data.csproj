@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201811170757209_OpusNonlifeUsers.Designer.cs">
       <DependentUpon>201811170757209_OpusNonlifeUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811191847191_2.cs" />
+    <Compile Include="Migrations\201811191847191_2.Designer.cs">
+      <DependentUpon>201811191847191_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UmsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811170757209_OpusNonlifeUsers.resx">
       <DependentUpon>201811170757209_OpusNonlifeUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811191847191_2.resx">
+      <DependentUpon>201811191847191_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

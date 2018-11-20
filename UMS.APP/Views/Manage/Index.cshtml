@@ -3,26 +3,35 @@
     ViewBag.Title = "Управление на акаунт";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-8 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Промяна настройки на акаунт</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-               
-    </dl>
+            <div class="panel-body">
+                <h4>Промяна настройки на акаунт</h4>
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>Промяна на парола:</dt>
+                    <dd>
+                        [
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Промени парола", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                        ]
+                    </dd>
+
+                </dl>
+            </div>
+
+        </div>
+    </div>
 </div>

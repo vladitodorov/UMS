@@ -1,0 +1,72 @@
+﻿@model UMS.Models.ViewModels.Account.AccountWithRolesViewModel
+
+@{
+    ViewBag.Title = "Роли на потребители";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Роли на потребител: @Model.Username
+            </div>
+            <div class="panel-body">
+                @if (Model.Roles.Count() == 0)
+                {
+                    <p>Потребителят няма специфични роли.</p>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Роля</th>
+                                    <th></th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in Model.Roles)
+                                {
+                                    <tr>
+                                        <td>@role.ToString()</td>
+                                        <td>
+                                            <form method="post">
+                                                <input name="roleRemove" class="hidden" value="@role.ToString()" />
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Премахни</button>
+                                            </form>
+                                        </td>                                        
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Добавяне на роля
+            </div>
+            <div class="panel-body">
+                <form method="post">
+                    <select name="role" class="form-control" style="width:250px">
+                        <option></option>
+                        <option>Administrator</option>
+                        <option>Manager</option>
+                    </select>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Добави</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
