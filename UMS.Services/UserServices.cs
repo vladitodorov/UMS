@@ -1,11 +1,13 @@
 ﻿namespace UMS.Services
 {
     using AutoMapper;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using UMS.Models.EntityModels;
     using UMS.Models.ViewModels.AdUsers;
     using UMS.Models.ViewModels.Users;
+    using Profile = Models.EntityModels.Profile;
 
     public class UserServices : Service
     {
@@ -33,6 +35,31 @@
                 Egn = egnLong,
                 AdUser = adUser,
                 OpusNonUsers = opusNonUsers
+            };
+
+            return result;
+        }
+
+        public AllUserProfilesByPages GetAllProfiles(int page)
+        {
+            var totalProfiles = this.Context.Profiles.Count();
+
+            IEnumerable<Profile> allProfiles = this.Context.Profiles
+                .OrderBy(p => p.Heading)
+                .OrderBy(p => p.Direction)
+                .OrderBy(p => p.Directorate)
+                .OrderBy(p => p.Position)
+                .Skip((page - 1) * 10)
+                .Take(10)                
+                .ToList();
+
+            IEnumerable<UsersProfiles> ap = Mapper.Map<IEnumerable<Profile>, IEnumerable<UsersProfiles>>(allProfiles);
+
+            var result = new AllUserProfilesByPages
+            {
+                UsersProfiles = ap,
+                ProfilesCount = totalProfiles,
+                CurrentPage = page
             };
 
             return result;

@@ -1,5 +1,6 @@
 ﻿namespace UMS.Services
 {
+    using System;
     using UMS.Data;
 
     public abstract class Service

@@ -1,0 +1,42 @@
+﻿@model UMS.Models.ViewModels.Menu.AddProfileMenu
+@{
+    ViewBag.Title = "Иформация за достъп";
+}
+
+<div class="row">
+    <div class="col-md-8 ">
+        <!--   Kitchen Sink -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Успешно създадохте нов достъп до услуга
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Име на услуга</th>
+                                <th>Роля/Права/Достъп</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.System</td>
+                                <td>@Model.Role</td>
+                                <td>@Model.Description</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div align="right">
+                    @Html.ActionLink("Нов достъп", "Add", "Menu", new { }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Изход", "Index", "Menu", new { }, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

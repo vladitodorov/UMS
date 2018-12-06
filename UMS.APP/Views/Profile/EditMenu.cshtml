@@ -1,0 +1,33 @@
+﻿@model UMS.Models.ViewModels.Profile.EditMenuViewModel
+@{
+    ViewBag.Title = "Добавяне услуга към профил";
+}
+
+@using (Html.BeginForm("EditMenu", "Profile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Добавяне на услуга към профил
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <input name="profileId" class="hidden" value="@Model.Id" />
+                <div style="font-display:block; font-size:large">
+                    <b>Профил:</b> @Model.Heading @(Model.Direction == string.Empty ? "" : " | " + Model.Direction) @(Model.Directorate == string.Empty ? "" : " | " + Model.Directorate) - @Model.Position
+                </div>                 
+            </div>
+            <div class="row">
+                <div style="font-display:block; font-size:large">
+                    <b>Услуга:</b> @Model.ProfileMenuSystem - @Model.ProfileMenuRole
+                </div>
+            </div>
+            <div align="right">
+                @Html.ActionLink("Отказ", "Edit", "Profile", new { @id = Model.Id }, new { @class = "btn btn-danger" })
+                <button type="submit" class="btn btn-primary">Запис</button>
+            </div>
+
+        </div>
+    </div>
+}

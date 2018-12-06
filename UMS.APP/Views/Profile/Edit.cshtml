@@ -1,0 +1,99 @@
+﻿@model UMS.Models.ViewModels.Profile.EditUsersProfileViewModel
+@{
+    ViewBag.Title = "Добавяне на услуги към профил";
+}
+@if (TempData.ContainsKey("SuccessAddProfileMenu"))
+{
+    <div class="alert alert-success">
+        @TempData["SuccessAddProfileMenu"]
+    </div>
+}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Model.Heading @(Model.Direction == string.Empty ? "" : " | " + Model.Direction) @(Model.Directorate == string.Empty ? "" : " | " + Model.Directorate) @(Model.Position == string.Empty ? "" : " - " + Model.Position)
+                </div>
+                <div class="panel-body">
+                    @if (Model.ProfileMenus.Count() == 0)
+                    {
+                        <p>За текущия профил има следните услуги:</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Услуга</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var pmenu in Model.ProfileMenus)
+                                    {
+                                        <tr>
+                                            <td>@pmenu.System - @pmenu.Role</td>
+                                            <td>
+                                                <form method="post">
+                                                    @*<input name="roleRemove" class="hidden" value="@role.ToString()" />*@
+                                                    @*<button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Премахни</button>*@
+                                                </form>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Добавяне на услуга
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Име на услуга</th>
+                                        <th>Роля/Права/Достъп</th>
+                                        <th><div align="center">Добавяне</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var menu in Model.AllProfileMenus)
+                                    {
+                                        <tr>
+
+                                            <td>@menu.System</td>
+                                            <td runat="server" title="@menu.Description">@menu.Role</td>
+                                            <td align="center">
+                                                @Html.ActionLink("Добавяне", "EditMenu", "Profile", new
+                                       {
+                                           @id = menu.Id,
+                                           @system = menu.System,
+                                           @role = menu.Role,
+                                           @profileId = Model.Id,
+                                           @heading = Model.Heading,
+                                           @direction = Model.Direction,
+                                           @directorarate = Model.Directorate,
+                                           @position = Model.Position
+                                       }, new { @class = "btn btn-success" })
+                                        </td>
+
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+

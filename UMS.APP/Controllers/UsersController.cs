@@ -5,6 +5,7 @@
     using UMS.Models.ViewModels.Users;
     using UMS.Services;
 
+    [Authorize]
     public class UsersController : Controller
     {
         private UserServices service;
@@ -44,6 +45,14 @@
             AllUserDetailsByEgn userDetails = this.service.GetAllUserDetailsByEgn(egnLong);
 
             return View(userDetails);
+        }
+
+        //GET: Display all profiles
+        public ActionResult Profiles(int page = 1)
+        {
+            var allProfiles = this.service.GetAllProfiles(page);
+
+            return View(allProfiles);
         }
     }
 }

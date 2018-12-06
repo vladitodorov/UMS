@@ -1,0 +1,66 @@
+﻿@model UMS.Models.ViewModels.Users.AllUserProfilesByPages
+@{
+    ViewBag.Title = "Всички профили";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                @Html.ActionLink("Добавяне на нов профил", "Add", "Profile", new { }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Списък на дефинирани профили
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Направление</th>
+                                <th>Управление</th>
+                                <th>Дирекция</th>
+                                <th>Позиция</th>
+                                <th><div align="center">Преглед</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var profile in Model.UsersProfiles)
+                            {
+                                <tr>
+                                    <td>@profile.Heading</td>
+                                    <td>@profile.Direction</td>
+                                    <td>@profile.Directorate</td>
+                                    <td>@profile.Position</td>
+                                    <td align="center">@Html.ActionLink("Преглед", "Edit", "profile", new { @id = profile.Id }, new { @class = "btn btn-info" })</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.ProfilesCount >= Model.UsersProfiles.Count())
+{
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                @Html.ActionLink("<< Назад", "Profiles", "Users", new { page = Model.PreviousPage }, new { })
+            </li>
+            <li class="page-item">
+                <span aria-hidden="true">@Model.CurrentPage</span>
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("Напред >>", "Profiles", "Users", new { page = Model.NextPage }, new { })
+            </li>
+        </ul>
+    </nav>
+}

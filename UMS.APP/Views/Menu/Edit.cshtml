@@ -1,0 +1,47 @@
+﻿@model UMS.Models.ViewModels.Menu.AllProfileMenuViewModel
+@{
+    ViewBag.Title = "Редакция на запис";
+}
+
+@if (TempData.ContainsKey("SuccessEdit"))
+{
+    <div class="alert alert-success">
+        @TempData["SuccessEdit"]
+    </div>
+}
+
+@using (Html.BeginForm("Edit", "Menu", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Редактиране на достъп
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-md-2">
+                    @Html.LabelFor(x => Model.System, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.TextBoxFor(x => Model.System, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => Model.System, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(x => Model.Role, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.TextBoxFor(x => Model.Role, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => Model.Role, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(x => Model.Description, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.TextBoxFor(x => Model.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => Model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div align="right">
+                @Html.ActionLink("Изход", "Index", "Menu", new { }, new { @class = "btn btn-danger" })
+                <button type="submit" class="btn btn-primary">Запис</button>
+            </div>
+        </div>
+    </div>
+
+}
+

@@ -68,6 +68,26 @@
     <Compile Include="Migrations\201811191847191_2.Designer.cs">
       <DependentUpon>201811191847191_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201510011_AddedProfileTables.cs" />
+    <Compile Include="Migrations\201811201510011_AddedProfileTables.Designer.cs">
+      <DependentUpon>201811201510011_AddedProfileTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811271401474_AddTableProfile.cs" />
+    <Compile Include="Migrations\201811271401474_AddTableProfile.Designer.cs">
+      <DependentUpon>201811271401474_AddTableProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280913277_AddedProfileMenuTable.cs" />
+    <Compile Include="Migrations\201811280913277_AddedProfileMenuTable.Designer.cs">
+      <DependentUpon>201811280913277_AddedProfileMenuTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280940232_AddedDependency.cs" />
+    <Compile Include="Migrations\201811280940232_AddedDependency.Designer.cs">
+      <DependentUpon>201811280940232_AddedDependency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811280942080_AddedDependency1.cs" />
+    <Compile Include="Migrations\201811280942080_AddedDependency1.Designer.cs">
+      <DependentUpon>201811280942080_AddedDependency1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UmsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +111,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811191847191_2.resx">
       <DependentUpon>201811191847191_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201510011_AddedProfileTables.resx">
+      <DependentUpon>201811201510011_AddedProfileTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811271401474_AddTableProfile.resx">
+      <DependentUpon>201811271401474_AddTableProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280913277_AddedProfileMenuTable.resx">
+      <DependentUpon>201811280913277_AddedProfileMenuTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280940232_AddedDependency.resx">
+      <DependentUpon>201811280940232_AddedDependency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811280942080_AddedDependency1.resx">
+      <DependentUpon>201811280942080_AddedDependency1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

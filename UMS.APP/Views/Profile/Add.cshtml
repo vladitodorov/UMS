@@ -1,0 +1,55 @@
+﻿@model UMS.Models.ViewModels.Profile.AddNewProfileViewModel
+
+@{
+    ViewBag.Title = "Добавяне на нов профил";
+}
+
+@if (TempData.ContainsKey("NotSelectedItem"))
+{
+    <div class="alert alert-danger">
+        @TempData["NotSelectedItem"]
+    </div>
+}
+@if (TempData.ContainsKey("DuplicateProfile"))
+{
+    <div class="alert alert-info">
+        @TempData["DuplicateProfile"]
+    </div>
+}
+
+
+@using (Html.BeginForm("Add", "Profile", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Въвеждане на нов профил
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(x => Model.SelectedHeading, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.DropDownListFor(x => Model.SelectedHeading, Model.Headings, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(x => Model.SelectedDirection, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.DropDownListFor(x => Model.SelectedDirection, Model.Directions, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(x => Model.SelectedDirectorate, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.DropDownListFor(x => Model.SelectedDirectorate, Model.Directorates, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(x => Model.SelectedPosition, htmlAttributes: new { @class = "control-label col-md2" })
+                    @Html.DropDownListFor(x => Model.SelectedPosition, Model.Positions, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div align="right">
+                @Html.ActionLink("Изход", "Index", "Home", new { }, new { @class = "btn btn-danger" })
+                <button type="submit" class="btn btn-primary">Създаване на профил</button>
+            </div>
+
+        </div>
+    </div>
+}

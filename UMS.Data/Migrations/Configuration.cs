@@ -63,8 +63,134 @@ namespace UMS.Data.Migrations
             PopulateAdUserTable(context);
             //adding opus nonlife users
             PopulateOpusNUserTable(context);
+            //adding info into profile tables 
+            PopulateProfileTableInfo(context);
             //---------------------------------------------------------------------------------------------------->
-          
+
+
+        }
+
+        private void PopulateProfileTableInfo(UmsDbContext context)
+        {
+            context.ProfileHeadings.AddOrUpdate(heading => heading.HeadingName, new ProfileHeading[]
+            {
+                new ProfileHeading()
+                {
+                    HeadingName = "Операции",
+                    Status = true
+                },
+                new ProfileHeading()
+                {
+                    HeadingName = "Подписваческа дейност",
+                    Status = true
+                },
+                new ProfileHeading()
+                {
+                    HeadingName = "Централни функции",
+                    Status = true
+                }
+            });
+
+            context.ProfileDirections.AddOrUpdate(direction => direction.DirectionName, new ProfileDirection[]
+                {
+                    new ProfileDirection()
+                    {
+                        DirectionName = "Ликвидация на щети",
+                        Status = true
+                    },
+                    new ProfileDirection()
+                    {
+                        DirectionName = "Информационни Технологии",
+                        Status = true
+                    },
+                    new ProfileDirection()
+                    {
+                        DirectionName = "АСД",
+                        Status = true
+                    },
+                    new ProfileDirection()
+                    {
+                        DirectionName = "Полици",
+                        Status = true
+                    },
+                    new ProfileDirection()
+                    {
+                        DirectionName = "Актюери",
+                    },
+                    new ProfileDirection()
+                    {
+                        DirectionName = "Деловодство",
+                        Status = true
+                    },
+                });
+
+            context.ProfileDirectorates.AddOrUpdate(directorate => directorate.DirectorateName, new ProfileDirectorate[]
+                {
+                    new ProfileDirectorate()
+                    {
+                        DirectorateName = "Щети АЗ",
+                        Status = true
+                    },
+                    new ProfileDirectorate()
+                    {
+                        DirectorateName = "Щети OЗ",
+                        Status = true
+                    },
+                    new ProfileDirectorate()
+                    {
+                        DirectorateName = "Щети Живот",
+                        Status = true
+                    },
+                    new ProfileDirectorate()
+                    {
+                        DirectorateName = "Инфраструктура и услуги",
+                        Status = true
+                    },
+                    new ProfileDirectorate()
+                    {
+                        DirectorateName = "Програмиране и разработка",
+                        Status = true
+                    },
+                });
+
+            context.ProfilePositions.AddOrUpdate(position => position.PositionName, new ProfilePosition[]
+                {
+                    new ProfilePosition()
+                    {
+                        PositionName = "Специалист",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Главен специалист",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Ръководител",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Администратор",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Програмист",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Деловодител",
+                        Status = true
+                    },
+                    new ProfilePosition()
+                    {
+                        PositionName = "Актюер",
+                        Status = true
+                    }
+                });
         }
 
         private void PopulateOpusNUserTable(UmsDbContext context)

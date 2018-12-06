@@ -1,0 +1,42 @@
+﻿@model UMS.Models.ViewModels.Profile.AddNewProfileViewModel
+@{
+    ViewBag.Title = "Информация за профил";
+}
+
+<div class="row">
+    <div class="col-md-8 ">
+        <!--   Kitchen Sink -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Успешно създадохте нов профил
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Направление</th>
+                                <th>Управление</th>
+                                <th>Дирекция</th>
+                                <th>Длъжност</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.SelectedHeading</td>
+                                <td>@Model.SelectedDirection</td>
+                                <td>@Model.SelectedDirectorate</td>
+                                <td>@Model.SelectedPosition</td>
+</tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div align="right">
+                    @Html.ActionLink("Нов профил", "Add", "Profile", new { }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Изход", "Profiles", "Users", new { }, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
