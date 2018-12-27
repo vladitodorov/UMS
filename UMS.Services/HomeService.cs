@@ -2,18 +2,19 @@
 {
     using AutoMapper;
     using System.Collections.Generic;
+    using System.Linq;
     using UMS.Models.EntityModels;
-    using UMS.Models.ViewModels.AdUsers;
+    using UMS.Models.ViewModels.Home;
 
     public class HomeService : Service
     {
-        //public IEnumerable<AdAccountViewModel> GetAllAdAccounts()
-        //{
-        //    IEnumerable<AdUser> adAccounts = this.Context.AdAccounts;
-        //
-        //    IEnumerable<AdAccountViewModel> adAccountList = Mapper.Map<IEnumerable<AdUser>, IEnumerable<AdAccountViewModel>>(adAccounts);
-        //
-        //    return adAccountList;
-        //}
+        public IEnumerable<AllRequestsForProfilingViewModel> GetAllReqForProfiling()
+        {
+            IEnumerable<SysAidRequest> result = Context.SysAidRequests.Where(r => r.RequestStatus != "Done");
+
+            IEnumerable<AllRequestsForProfilingViewModel> requests = Mapper.Map<IEnumerable<SysAidRequest>, IEnumerable<AllRequestsForProfilingViewModel>>(result);
+
+            return requests;
+        }        
     }
 }

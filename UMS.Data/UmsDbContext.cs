@@ -25,6 +25,7 @@ namespace UMS.Data
         public virtual DbSet<ProfilePosition> ProfilePositions { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<ProfileMenu> ProfileMenus { get; set; }
+        public virtual DbSet<SysAidRequest> SysAidRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {

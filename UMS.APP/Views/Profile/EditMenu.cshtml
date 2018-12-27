@@ -15,7 +15,7 @@
             <div class="row">
                 <input name="profileId" class="hidden" value="@Model.Id" />
                 <div style="font-display:block; font-size:large">
-                    <b>Профил:</b> @Model.Heading @(Model.Direction == string.Empty ? "" : " | " + Model.Direction) @(Model.Directorate == string.Empty ? "" : " | " + Model.Directorate) - @Model.Position
+                    <b>Профил:</b> @Model.Heading @(Model.Direction == null ? "" : " | " + Model.Direction) @(Model.Directorate == null ? "" : " | " + Model.Directorate) - @Model.Position
                 </div>                 
             </div>
             <div class="row">

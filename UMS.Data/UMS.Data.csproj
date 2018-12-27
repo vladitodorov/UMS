@@ -43,6 +43,12 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -88,6 +94,22 @@
     <Compile Include="Migrations\201811280942080_AddedDependency1.Designer.cs">
       <DependentUpon>201811280942080_AddedDependency1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812071157335_AddSysAidRequestTable.cs" />
+    <Compile Include="Migrations\201812071157335_AddSysAidRequestTable.Designer.cs">
+      <DependentUpon>201812071157335_AddSysAidRequestTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812181200577_ModifiedSysAidRequest.cs" />
+    <Compile Include="Migrations\201812181200577_ModifiedSysAidRequest.Designer.cs">
+      <DependentUpon>201812181200577_ModifiedSysAidRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812190651518_UpdateSysAidRequest.cs" />
+    <Compile Include="Migrations\201812190651518_UpdateSysAidRequest.Designer.cs">
+      <DependentUpon>201812190651518_UpdateSysAidRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812210720159_UpdateSysAidRequest1.cs" />
+    <Compile Include="Migrations\201812210720159_UpdateSysAidRequest1.Designer.cs">
+      <DependentUpon>201812210720159_UpdateSysAidRequest1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UmsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,6 +148,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811280942080_AddedDependency1.resx">
       <DependentUpon>201811280942080_AddedDependency1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812071157335_AddSysAidRequestTable.resx">
+      <DependentUpon>201812071157335_AddSysAidRequestTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181200577_ModifiedSysAidRequest.resx">
+      <DependentUpon>201812181200577_ModifiedSysAidRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812190651518_UpdateSysAidRequest.resx">
+      <DependentUpon>201812190651518_UpdateSysAidRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812210720159_UpdateSysAidRequest1.resx">
+      <DependentUpon>201812210720159_UpdateSysAidRequest1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

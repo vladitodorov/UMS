@@ -93,10 +93,12 @@
     <Compile Include="EntityModels\ProfileDirectorate.cs" />
     <Compile Include="EntityModels\ProfileHeading.cs" />
     <Compile Include="EntityModels\ProfilePosition.cs" />
+    <Compile Include="EntityModels\SysAidRequest.cs" />
     <Compile Include="EntityModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\AccountWithRolesViewModel.cs" />
     <Compile Include="ViewModels\Account\AllAccountsViewModel.cs" />
+    <Compile Include="ViewModels\Home\AllRequestsForProfilingViewModel.cs" />
     <Compile Include="ViewModels\Menu\AllProfileMenuViewModelPages.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />

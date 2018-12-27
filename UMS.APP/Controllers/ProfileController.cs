@@ -48,7 +48,7 @@
                 return View(model);
             }
 
-           return RedirectToAction("AddInfo", "Profile", model);
+            return RedirectToAction("AddInfo", "Profile", model);
         }
 
         public ActionResult AddInfo(AddNewProfileViewModel model)
@@ -95,6 +95,12 @@
 
             TempData.Add("SuccessAddProfileMenu", "Успешно добавихте услуга към профила.");
             return RedirectToAction("Edit", "Profile", new { id });
+        }
+
+        [HttpGet]
+        public ActionResult Create(int id)
+        {
+            return View();
         }
     }
 }

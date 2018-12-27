@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<UMS.Models.ViewModels.Home.AllRequestsForProfilingViewModel>
+
+@{
     ViewBag.Title = "Търсене на потребител";
 }
 
@@ -20,8 +22,40 @@
                 <p style="color:red">Търсенето се извършва само в потребителите от Активна директория</p>
             </div>
         </div>
-     </div>
- }
+    </div>
+}
+@if (Model.Count() > 0)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Списък на потребители за предоставяне на достъп до системите на АБХ в ЦУ
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Име на служителя</th>
+                            <th>Профил на служителя</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var req in Model)
+                        {
+                            <tr>
+                                <td>@req.UserFirstName @req.UserSurName @req.UserFamilyName</td>
+                                <td>@req.Napravlenie @(req.Upravlenie == null ? "" : " | " + req.Upravlenie) @(req.Direction == null ? "" : " | " + req.Direction) @(req.Position == null ? "" : " - " + req.Position)</td>
+                                <td>@Html.ActionLink("Разгледай", "")</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+}
 
 
 

@@ -12,7 +12,7 @@
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    @Model.Heading @(Model.Direction == string.Empty ? "" : " | " + Model.Direction) @(Model.Directorate == string.Empty ? "" : " | " + Model.Directorate) @(Model.Position == string.Empty ? "" : " - " + Model.Position)
+                    @Model.Heading @(Model.Direction == null ? "" : " | " + Model.Direction) @(Model.Directorate == null ? "" : " | " + Model.Directorate) @(Model.Position == null ? "" : " - " + Model.Position)
                 </div>
                 <div class="panel-body">
                     @if (Model.ProfileMenus.Count() == 0)
